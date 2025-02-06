@@ -34,7 +34,7 @@ function logic() { // !, &&, ||
     console.log(true && 2)//true
     console.log(!2)//false
 }
-function equality() { // ==, !=, ===, !==
+function equality() { // ==, !=, ===, !==  
     console.log(undefined != null)//false
     console.log(null == undefined) //true
     console.log(undefined == true) //false
