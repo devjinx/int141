@@ -1,10 +1,14 @@
-//c08_arrays.js
-
 function p(...a) { console.log(...a) }
 
-//creating()
-//typingAndEmptySlots()
+// Execute functions
+creating()
+typingAndEmptySlots()
 accessingAndLooping()
+modifyingArrays()
+searchingArrays()
+functionalProgrammingWithArrays()
+creatingNewArrays()
+convertingArrays()
 
 // -------------------------
 function creating() {
@@ -51,47 +55,102 @@ function typingAndEmptySlots() {
 function accessingAndLooping() {
     let ar = ["zero", 10, 20, undefined, null, Infinity]
     p("ar:", ar, ", length:", ar.length)
+    
+    // Accessing elements
+    p("First element:", ar[0])
+    p("Second element:", ar[1])
+    p("Last element:", ar.at(-1))
+    
+    // Looping through array
+    p("Looping using forEach:")
+    ar.forEach((value, index) => p(index, value))
+
+    p("Looping using for-of:")
+    for (let value of ar) {
+        p(value)
+    }
+
+    p("Looping using for-in:")
+    for (let index in ar) {
+        p(index, ar[index])
+    }
 }
 
-/*
+function modifyingArrays() {
+    let ar1 = [10, "two", false, 20, null, "two"]
+    
+    ar1.push("end")           
+    p("After push:", ar1)
 
-//3 accessing
-p(ar1[0])       // by position
-p(ar1.at(-2))   // from the back
+    let end = ar1.pop()       
+    p("After pop:", ar1, "Removed:", end)
 
-//4 adding/removing elements
-ar1.push("end")           // add to the end
-let end = ar1.pop()       // remove from the end
-ar1.unshift("front")      // add to the front
-let front = ar1.shift()   // remove from the front
+    ar1.unshift("front")      
+    p("After unshift:", ar1)
 
-//5 modifying arrays
-let removed = ar1.splice(2,1,100,200)  // .splice(start, deleteCount, ...newitemlist)
-let sliced = ar1.slice(1,3)            // .slice(start, end) -> [start,end)
-ar1.reverse()                          // .reverse() reverse order in place
-ar1.sort()                             // sort in place, lexicographically
+    let front = ar1.shift()   
+    p("After shift:", ar1, "Removed:", front)
 
-//6 searching
-p(ar1.includes("two"))
-p(ar1.indexOf("two"))
-p(ar1.lastIndexOf("two"))
+    let removed = ar1.splice(2, 1, 100, 200)  
+    p("After splice:", ar1, "Removed:", removed)
 
-//7 functional
-p(ar1.find(x => x > 2))
-p(ar1.findIndex(x => x > 2))
-ar1.forEach((v, i) => p(i, v))
-let mapped = ar1.map(x => x * 2)
-let filtered = ar1.filter(x => x > 2)
-let reduced = ar1.reduce((sum, x) => sum + x, 0)
+    let sliced = ar1.slice(1, 3)            
+    p("Sliced array:", sliced)
 
-//8 creating new arrays from old
-let ar12 = ar1.concat(ar2)        // merge
-let ar15 = [...ar1, ...ar5]       // spread/rest operator
-let sorted = ar1.toSorted()       // new sorted array
-let spliced = ar1.toSpliced(1,3)  // new spliced array
+    ar1.reverse()                          
+    p("After reverse:", ar1)
 
-//9 converting arrays
-p(ar1.join("-"))
-p(ar1.toString())
+    ar1.sort()                             
+    p("After sort:", ar1)
+}
 
-*/
+function searchingArrays() {
+    let ar1 = [10, "two", false, 20, null, "two"]
+
+    p("Includes 'two':", ar1.includes("two"))
+    p("Index of 'two':", ar1.indexOf("two"))
+    p("Last index of 'two':", ar1.lastIndexOf("two"))
+}
+
+function functionalProgrammingWithArrays() {
+    let ar1 = [10, 3, 7, 20, 15]
+
+    p("Find first element > 2:", ar1.find(x => x > 2))
+    p("Find index of first element > 2:", ar1.findIndex(x => x > 2))
+
+    p("ForEach loop:")
+    ar1.forEach((v, i) => p(i, v))
+
+    let mapped = ar1.map(x => x * 2)
+    p("Mapped (x2):", mapped)
+
+    let filtered = ar1.filter(x => x > 10)
+    p("Filtered (x > 10):", filtered)
+
+    let reduced = ar1.reduce((sum, x) => sum + x, 0)
+    p("Reduced (sum):", reduced)
+}
+
+function creatingNewArrays() {
+    let ar1 = [10, "two", false]
+    let ar2 = ["X", "Y", "Z"]
+
+    let ar12 = ar1.concat(ar2)        
+    p("Concatenated array:", ar12)
+
+    let ar15 = [...ar1, ...ar2]       
+    p("Spread operator array:", ar15)
+
+    let sorted = ar1.toSorted()       
+    p("New sorted array:", sorted)
+
+    let spliced = ar1.toSpliced(1, 2)  
+    p("New spliced array:", spliced)
+}
+
+function convertingArrays() {
+    let ar1 = [10, "two", false]
+
+    p("Joined with '-':", ar1.join("-"))
+    p("To string:", ar1.toString())
+}
